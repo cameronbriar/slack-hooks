@@ -12,9 +12,9 @@
 (defn create-uuid-pair [pair]
   (mc/insert db "pairs" pair))
 
-(defn update-uuid-pair [uuid token]
+(defn upsert-uuid-pair [uuid token]
   (mc/update db "pairs" {:uuid uuid}
-             {$set {:token token}}))
+             {$set {:token token}} {:upsert true}))
 
 (defn get-uuid-pair [uuid]
   (mc/find-one-as-map db "users" {:uuid uuid}))
