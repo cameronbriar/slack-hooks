@@ -4,7 +4,6 @@
             
             [reviewninja-slack.middleware
              :refer [development-middleware production-middleware]]
-            [reviewninja-slack.session :as session]
             [compojure.route :as route]
             [taoensso.timbre :as timbre]
             [taoensso.timbre.appenders.rotor :as rotor]
@@ -54,7 +53,6 @@
   (if (env :dev) (parser/cache-off!))
   (start-nrepl)
   ;;start the expired session cleanup job
-  (cronj/start! session/cleanup-job)
   (timbre/info "\n-=[ reviewninja-slack started successfully"
                (when (env :dev) "using the development profile") "]=-"))
 
@@ -64,7 +62,6 @@
   []
   (timbre/info "reviewninja-slack is shutting down...")
   (stop-nrepl)
-  (cronj/shutdown! session/cleanup-job)
   (timbre/info "shutdown complete!"))
 
 (def app

@@ -1,6 +1,5 @@
 (ns reviewninja-slack.middleware
-  (:require [reviewninja-slack.session :as session]
-            [reviewninja-slack.layout :refer [*servlet-context*]]
+  (:require [reviewninja-slack.layout :refer [*servlet-context*]]
             [taoensso.timbre :as timbre]
             [environ.core :refer [env]]
             [selmer.middleware :refer [wrap-error-page]]
@@ -50,11 +49,6 @@
   (-> handler
       
       (wrap-restful-format :formats [:json-kw :edn :transit-json :transit-msgpack])
-      (wrap-idle-session-timeout
-        {:timeout (* 60 30)
-         :timeout-response (redirect "/")})
-      (wrap-defaults
-        (assoc-in site-defaults [:session :store] (memory-store session/mem)))
       wrap-servlet-context
       wrap-internal-error))
 
