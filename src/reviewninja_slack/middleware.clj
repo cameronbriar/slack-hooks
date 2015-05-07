@@ -41,11 +41,8 @@
         wrap-exceptions)
     handler))
 
-
 (defn production-middleware [handler]
   (-> handler
-      
       (wrap-restful-format :formats [:json-kw :edn :transit-json :transit-msgpack])
       wrap-servlet-context
       wrap-internal-error))
-
