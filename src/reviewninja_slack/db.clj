@@ -1,11 +1,12 @@
-(ns reviewninja-slack.db.core
+(ns reviewninja-slack.db
     (:require [monger.core :as mg]
               [monger.collection :as mc]
               [monger.operators :refer :all]))
 
 ;; Tries to get the Mongo URI from the environment variable
 ;; MONGOHQ_URL, otherwise default it to localhost
-(defonce db (let [uri (get (System/getenv) "MONGOLAB_URL" "mongodb://127.0.0.1/reviewninja-slack")
+
+(defonce db (let [uri (get (System/getenv) "MONGOLAB_URL" "mongodb://127.0.0.1/rnslack")
                   {:keys [conn db]} (mg/connect-via-uri uri)]
               db))
 
@@ -13,7 +14,7 @@
   (mc/insert db "pairs" pair))
 
 (defn upsert-uuid-pair [uuid token]
-  (mc/update db "pairs" {:uuid uuid}
+  (mc/update db "pairs" {:uuid (int uuid)}
              {$set {:token token}} {:upsert true}))
 
 (defn get-uuid-pair [uuid]

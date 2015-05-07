@@ -1,17 +1,31 @@
-# reviewninja-slack
+ReviewNinja Slack Bot
+=======
 
-## Prerequisites
+A simple Slack Bot for [ReviewNinja](http://www.review.ninja/).
 
-You will need [Leiningen][1] 2.0 or above installed.
+License
+=======
 
-[1]: https://github.com/technomancy/leiningen
+Copyright 2015 by [SAP SE](http://www.sap.com) and made available under the
+[Apache License 2.0](http://www.apache.org/licenses/LICENSE-2.0). 
 
-## Running
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
 
-To start a web server for the application, run:
+    http://www.apache.org/licenses/LICENSE-2.0
 
-    lein ring server
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
 
-## License
+Credits
+=======
 
-Copyright © 2015 Gabriel Ruiz
+<p align="center">
+![SAP](https://raw.githubusercontent.com/reviewninja/review.ninja/master/sap_logo.png)
+
+<p align="center">
+:heart: from the github team @ sap
