@@ -1,7 +1,6 @@
 (ns reviewninja-slack.handler
   (:require [compojure.core :refer [defroutes routes]]
             [reviewninja-slack.routes :refer [home-routes]]
-            
             [reviewninja-slack.middleware
              :refer [development-middleware production-middleware]]
             [compojure.route :as route]

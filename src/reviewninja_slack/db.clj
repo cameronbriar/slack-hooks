@@ -10,12 +10,12 @@
                   {:keys [conn db]} (mg/connect-via-uri uri)]
               db))
 
-(defn create-uuid-pair [pair]
-  (mc/insert db "pairs" pair))
-
 (defn upsert-uuid-pair [uuid token]
   (mc/update db "pairs" {:uuid (int uuid)}
              {$set {:token token}} {:upsert true}))
 
+(defn delete-uuid-pair [uuid]
+  (mc/remove db "pairs" {:uuid uuid}))
+
 (defn get-uuid-pair [uuid]
-  (mc/find-one-as-map db "users" {:uuid uuid}))
+  (mc/find-one-as-map db "pairs" {:uuid uuid}))
