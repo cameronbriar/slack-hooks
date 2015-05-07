@@ -1,6 +1,6 @@
 (ns reviewninja-slack.routes
   (:require [reviewninja-slack.layout :as layout]
-            [reviewninja-slack.db.core :as db]
+            [reviewninja-slack.db :as db]
             [reviewninja-slack.api :as api]
             [compojure.core :refer [defroutes GET POST]]
             [clojure.java.io :as io]))
