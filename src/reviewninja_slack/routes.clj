@@ -8,6 +8,10 @@
   (str username " has starred #" pr-number ": " pr-text "\n"
        "#" pr-number " has " pr-stars " of " pr-threshold " needed stars."))
 
+(defn- unstar [username pr-number pr-text pr-threshold pr-stars]
+  (str username " has unstarred #" pr-number ": " pr-text "\n"
+       "#" pr-number " has " pr-stars " of " pr-threshold " needed stars."))
+
 (defn- pr-create [username pr-number pr-text pr-threshold]
   (str username " has created pull request #" pr-number ": " pr-text "\n"
        "#" pr-number " needs " pr-threshold " stars to merge."))
@@ -19,6 +23,7 @@
 (defn- slack-message [event args]
   (case event
     "star" (star (args :username) (args :pr-number) (args :pr-stars) (args :pr-text) (args :pr-threshold))
+    "unstar" (unstar (args :username) (args :pr-number) (args :pr-stars) (args :pr-text) (args :pr-threshold))
     "pr-create" (pr-create (args :username) (args :pr-number) (args :pr-text) (args :pr-threshold))
     "pr-merge" (pr-merge (args :username) (args :pr-number) (args :pr-text))
     "test" "lol"

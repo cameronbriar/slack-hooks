@@ -1,7 +1,7 @@
-(defproject reviewninja-slack "0.1.0-SNAPSHOT"
+(defproject reviewninja-slack "0.1.0"
 
-  :description "FIXME: write description"
-  :url "http://example.com/FIXME"
+  :description "Slack bot for ReviewNinja"
+  :url "https://github.com/reviewninja/reviewninja-slack"
 
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [selmer "0.8.2"]
@@ -31,9 +31,8 @@
 
   :plugins [[lein-ring "0.9.1"]
             [lein-environ "1.0.0"]
-            [lein-ancient "0.6.5"]
-            ]
-  
+            [lein-ancient "0.6.5"]]
+
 
   
   :ring {:handler reviewninja-slack.handler/app
