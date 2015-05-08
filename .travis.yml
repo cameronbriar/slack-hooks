@@ -1,0 +1,11 @@
+language: clojure
+before_script: lein deps javac
+deploy:
+  edge: true
+  provider: cloudfoundry
+  username: gabe@ggruiz.me
+  password:
+    secure: hgViLU6QA8y9mwQqUCluj/KlFMazgAR571bZd/YFnmGIiYXJd0Iu/I0agDhTZzbQsLjcdti0builIxdNx6lSZenw+rKqHAiFXEJWqxK4s+gC9e1F2YQ8EB1wuTPcI4Mxcw5zxY3pCLjl54eT+l02iARhflUqAM0+JMJxnNJ4zyM=
+  api: https://api.run.pivotal.io
+  organization: GithubTeam
+  space: applications
