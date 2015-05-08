@@ -1,6 +1,5 @@
 (ns reviewninja-slack.middleware
-  (:require [reviewninja-slack.layout :refer [*servlet-context*]]
-            [taoensso.timbre :as timbre]
+  (:require [taoensso.timbre :as timbre]
             [environ.core :refer [env]]
             [selmer.middleware :refer [wrap-error-page]]
             [prone.middleware :refer [wrap-exceptions]]
@@ -9,17 +8,6 @@
             [ring.middleware.session-timeout :refer [wrap-idle-session-timeout]]
             [ring.middleware.session.memory :refer [memory-store]]
             [ring.middleware.format :refer [wrap-restful-format]]))
-
-(defn wrap-servlet-context [handler]
-  (fn [request]
-    (binding [*servlet-context*
-              (if-let [context (:servlet-context request)]
-                ;; If we're not inside a serlvet environment
-                ;; (for example when using mock requests), then
-                ;; .getContextPath might not exist
-                (try (.getContextPath context)
-                     (catch IllegalArgumentException _ context)))]
-      (handler request))))
 
 (defn wrap-internal-error [handler]
   (fn [req]
@@ -44,5 +32,4 @@
 (defn production-middleware [handler]
   (-> handler
       (wrap-restful-format :formats [:json-kw :edn :transit-json :transit-msgpack])
-      wrap-servlet-context
       wrap-internal-error))

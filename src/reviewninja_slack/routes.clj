@@ -1,6 +1,5 @@
 (ns reviewninja-slack.routes
-  (:require [reviewninja-slack.layout :as layout]
-            [reviewninja-slack.api :as api]
+  (:require [reviewninja-slack.api :as api]
             [compojure.core :refer [defroutes GET POST]]
             [clojure.java.io :as io]))
 
@@ -25,8 +24,7 @@
     ""))
 
 (defn home-page []
-  (layout/render
-    "home.html" {:docs (-> "docs/docs.md" io/resource slurp)}))
+  "hello")
 
 (defn receive [{:keys [params]}]
   (let [event (get params :event)
