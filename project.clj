@@ -17,7 +17,8 @@
                  [bouncer "0.3.2"]
                  [prone "0.8.1"]
                  [org.clojure/tools.nrepl "0.2.10"]
-                 [ring-server "0.4.0"]]
+                 [ring-server "0.4.0"]
+                 [ring-basic-authentication "1.0.5"]]
 
   :min-lein-version "2.0.0"
   :uberjar-name "reviewninja-slack.jar"
