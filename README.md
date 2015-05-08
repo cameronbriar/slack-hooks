@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/reviewninja/reviewninja-slack.svg?branch=master)](https://travis-ci.org/reviewninja/reviewninja-slack)
+
 ReviewNinja Slack Bot
 =======
 
