@@ -1,6 +1,5 @@
 (ns reviewninja-slack.routes
   (:require [reviewninja-slack.layout :as layout]
-            [reviewninja-slack.db :as db]
             [reviewninja-slack.api :as api]
             [compojure.core :refer [defroutes GET POST]]
             [clojure.java.io :as io]))
@@ -29,13 +28,17 @@
   (layout/render
     "home.html" {:docs (-> "docs/docs.md" io/resource slurp)}))
 
-(defn receive [request]
-  (let [event (get-in request [:params :event])
-        repo-uuid (get-in request [:params :uuid])
-        slack-token (get-in request [:params :slack-token])]
-    ;; (slack-methods)
-    (db/upsert-uuid-pair repo-uuid slack-token)))
+(defn receive [{:keys [params]}]
+  (let [event (get params :event)
+        repo-uuid (get params :uuid)
+        slack-token (get params :slack-token)]
+    ;; (slack-methods)))
+    ))
+
+(defn testing [{:keys [params]}]
+  (println params))
 
 (defroutes home-routes
   (GET "/" [] (home-page))
-  (POST "/receive" [] receive))
+  (POST "/receive" request (receive request))
+  (POST "/text" request (testing request)))
