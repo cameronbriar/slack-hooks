@@ -4,7 +4,7 @@
             [clojure.java.io :as io]))
 
 ;; message creating functions
-(defn- star [username pr-number pr-stars pr-text pr-threshold]
+(defn- star [username pr-number pr-text pr-threshold pr-stars]
   (str username " has starred #" pr-number ": " pr-text "\n"
        "#" pr-number " has " pr-stars " of " pr-threshold " needed stars."))
 
@@ -29,14 +29,20 @@
 (defn receive [{:keys [params]}]
   (let [event (get params :event)
         repo-uuid (get params :uuid)
-        slack-token (get params :slack-token)]
-    ;; (slack-methods)))
-    ))
-
-(defn testing [{:keys [params]}]
-  (println params))
+        slack-token (get params :slack-token)
+        channel (get params :channel "#reviewninja")
+        bot-name (get params :bot-name "ninja")
+        args {:username (get params :username)
+              :pr-number (get params :pr-number)
+              :pr-text (get params :pr-text)
+              :pr-threshold (get params :pr-threshold)
+              :pr-stars (get params :pr-stars)}]
+    (api/send-message slack-token 
+                  channel 
+                  (slack-message event args) 
+                  bot-name)
+    (slack-message event args)))
 
 (defroutes home-routes
   (GET "/" [] (home-page))
-  (POST "/receive" request (receive request))
-  (POST "/text" request (testing request)))
+  (POST "/receive" request (receive request)))
