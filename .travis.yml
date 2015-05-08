@@ -1,5 +1,6 @@
 language: clojure
-before_script: lein deps javac
+before_script: lein deps
+script: "lein test"
 deploy:
   edge: true
   provider: cloudfoundry
