@@ -1,13 +1,13 @@
 sudo: true
 language: clojure
-before_script: lein deps
-script: lein test
 deploy:
   edge: true
   provider: cloudfoundry
+  api: https://api.run.pivotal.io
   username: tools@sap.com
   password:
-    secure: CQ8wPtDpkxNL3F7vrpaDTCOZS68c7d7TKXyH3ql7DEBpdYq6ETSyhiw8kxiX42ethPd6OFGMcdZRKIkOqH5qtpkwjGbFhBswNqfEzoWrjk/1/JUPLiTbAgkNdIl1uaF6ON6pIEQJOCkCD/GiTchxIatQPYWqtaRD/OTPiJ12AiM=
-  api: https://api.run.pivotal.io
+    secure: SbAORvg/ANEo0SoawmDmay0d/0NfWUK81Qhr74YMD5MNeMl/ruv3iqtr5DjgCxTRSv+g1Hp2AlQqyx3ORsxd3yvAAHfxxEUQFexEETxX7qm7Maq9t1BNGoTfrSDPGufmlDJHJjFIe8CnQ7HPnRaAkEEy8mGDFG+Rnc7U1DbOGTM=
   organization: GithubTeam
   space: applications
+  on:
+    repo: reviewninja/reviewninja-slack
