@@ -7,7 +7,7 @@ deploy:
   provider: cloudfoundry
   username: tools@sap.com
   password:
-    secure: gOcDwPbY3JIEt6DJT93U2GExvQZhA9+vYDcIqe8Q+Dy2c0an6JOD7EWK5r64vcMDatdWRpaFwkSQBWjAFyJX9L97FvBnEGbjyGEo75geNPs+QkBwIqVsgohZXAARfFEZpCo23b2+z8Whtz2zhwX7BinW1kZad7TcZ3zIIQZVrWw=
+    secure: CQ8wPtDpkxNL3F7vrpaDTCOZS68c7d7TKXyH3ql7DEBpdYq6ETSyhiw8kxiX42ethPd6OFGMcdZRKIkOqH5qtpkwjGbFhBswNqfEzoWrjk/1/JUPLiTbAgkNdIl1uaF6ON6pIEQJOCkCD/GiTchxIatQPYWqtaRD/OTPiJ12AiM=
   api: https://api.run.pivotal.io
   organization: GithubTeam
   space: applications
