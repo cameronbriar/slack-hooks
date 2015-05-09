@@ -2,7 +2,8 @@
   (:require [taoensso.timbre :as timbre]
             [selmer.middleware :refer [wrap-error-page]]
             [prone.middleware :refer [wrap-exceptions]]
-            [ring.middleware.format :refer [wrap-restful-format]]))
+            [ring.middleware.format :refer [wrap-restful-format]]
+            [environ.core :refer [env]]))
 
 (defn wrap-internal-error [handler]
   (fn [req]
@@ -18,7 +19,7 @@
                 </body>"}))))
 
 (defn development-middleware [handler]
-  (if (= (System/getenv "ENVIRON") "dev")
+  (if (env :dev)
     (-> handler
         wrap-error-page
         wrap-exceptions)

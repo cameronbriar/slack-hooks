@@ -8,6 +8,7 @@
                  [com.taoensso/timbre "3.4.0"]
                  [clj-http "1.1.2"]
                  [compojure "1.3.3"]
+                 [environ "1.0.0"]
                  [ring/ring-defaults "0.1.4"]
                  [ring/ring-session-timeout "0.1.0"]
                  [ring-middleware-format "0.5.0"]
@@ -29,16 +30,11 @@
             [lein-environ "1.0.0"]
             [lein-ancient "0.6.5"]]
 
-
-  
   :ring {:handler reviewninja-slack.handler/app
          :init    reviewninja-slack.handler/init
          :destroy reviewninja-slack.handler/destroy
          :uberwar-name "reviewninja-slack.war"}
 
-  
-  
-  
   :profiles
   {:uberjar {:omit-source true
              :env {:production true}
@@ -49,9 +45,7 @@
                         [pjstadig/humane-test-output "0.7.0"]
                         ]
          :source-paths ["env/dev/clj"]
-         
-         
-         
+
          :repl-options {:init-ns reviewninja-slack.core}
          :injections [(require 'pjstadig.humane-test-output)
                       (pjstadig.humane-test-output/activate!)]
