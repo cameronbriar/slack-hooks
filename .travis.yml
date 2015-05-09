@@ -1,6 +1,6 @@
 sudo: true
 language: clojure
-after_script: lein uberjar
+before_deploy: lein uberjar
 deploy:
   edge: true
   provider: cloudfoundry
