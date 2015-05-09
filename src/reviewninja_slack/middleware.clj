@@ -1,6 +1,5 @@
 (ns reviewninja-slack.middleware
   (:require [taoensso.timbre :as timbre]
-            [environ.core :refer [env]]
             [selmer.middleware :refer [wrap-error-page]]
             [prone.middleware :refer [wrap-exceptions]]
             [ring.middleware.format :refer [wrap-restful-format]]))
@@ -19,7 +18,7 @@
                 </body>"}))))
 
 (defn development-middleware [handler]
-  (if (env :dev)
+  (if (= (System/getenv "ENVIRON") "dev")
     (-> handler
         wrap-error-page
         wrap-exceptions)

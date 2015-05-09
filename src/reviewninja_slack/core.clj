@@ -1,26 +1,23 @@
 (ns reviewninja-slack.core
-  (:require [reviewninja-slack.handler :refer [app init destroy]]
+  (:require [reviewninja-slack.handler :refer [app]]
             [ring.adapter.jetty :refer [run-jetty]]
-            [ring.middleware.reload :as reload]
-            [environ.core :refer [env]])
+            [ring.middleware.reload :as reload])
   (:gen-class))
 
 (defonce server (atom nil))
 
 (defn parse-port [port]
-  (Integer/parseInt (or port (env :port) "80")))
+  (Integer/parseInt (or port (System/getenv "PORT") "80")))
 
 (defn start-server [port]
-  (init)
   (reset! server
           (run-jetty
-            (if (env :dev) (reload/wrap-reload #'app) app)
+            (if (= (System/getenv "ENVIRON") "dev") (reload/wrap-reload #'app) app)
             {:port port
              :join? false})))
 
 (defn stop-server []
   (when @server
-    (destroy)
     (.stop @server)
     (reset! server nil)))
 
