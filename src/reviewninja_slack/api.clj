@@ -9,4 +9,4 @@
               	 :text text 
               	 :username "ReviewNinja"
               	 :mrkdown true
-                 :icon_url "https://raw.githubusercontent.com/reviewninja/ux.review.ninja/master/Artwork/logos/slack/rnslack.png"}}))
+                 :icon_url "https://raw.githubusercontent.com/reviewninja/review.ninja/master/src/client/assets/images/review-ninja-48.png"}}))

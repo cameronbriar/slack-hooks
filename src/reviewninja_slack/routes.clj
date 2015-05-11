@@ -4,49 +4,44 @@
             [clojure.java.io :as io]))
 
 ;; message creating functions
-(defn- star [username pr-number pr-text pr-threshold pr-stars]
+(defn- star [{:keys [username pr-number pr-text pr-stars pr-threshold]}]
   (str username " has starred #" pr-number ": " pr-text "\n"
        "#" pr-number " has " pr-stars " of " pr-threshold " needed stars."))
 
-(defn- unstar [username pr-number pr-text pr-threshold pr-stars]
+(defn- unstar [{:keys [username pr-number pr-text pr-stars pr-threshold]}]
   (str username " has unstarred #" pr-number ": " pr-text "\n"
        "#" pr-number " has " pr-stars " of " pr-threshold " needed stars."))
 
-(defn- pr-create [username pr-number pr-text pr-threshold]
+(defn- pr-create [{:keys [username pr-number pr-text pr-threshold]}]
   (str username " has created pull request #" pr-number ": " pr-text "\n"
        "#" pr-number " needs " pr-threshold " stars to merge."))
 
-(defn- pr-merge [username pr-number pr-text]
+(defn- pr-merge [{:keys [username pr-number pr-text]}]
   (str username " has merged #" pr-number ": " pr-text "!"))
 
 ;; function to determine what message to use
 (defn- slack-message [event args]
   (case event
-    "star" (star (args :username) (args :pr-number) (args :pr-stars) (args :pr-text) (args :pr-threshold))
-    "unstar" (unstar (args :username) (args :pr-number) (args :pr-stars) (args :pr-text) (args :pr-threshold))
-    "pr-create" (pr-create (args :username) (args :pr-number) (args :pr-text) (args :pr-threshold))
-    "pr-merge" (pr-merge (args :username) (args :pr-number) (args :pr-text))
-    "test" "lol"
+    "star" (star args)
+    "unstar" (unstar args)
+    "pr-create" (pr-create args)
+    "pr-merge" (pr-merge args)
     ""))
 
-(defn- slack-message-test [event] event)
-
 (defn home-page []
-  "hello")
+  "ReviewNinja + Slack = <3")
 
 (defn receive [{:keys [params]}]
   (let [event (get params :event)
-        repo-uuid (get params :uuid)
         token (get params :token)
-        channel (get params :channel "#reviewninja")
-        args {:username (get params :username)
-              :pr-number (get params :pr-number)
-              :pr-text (get params :pr-text)
-              :pr-threshold (get params :pr-threshold)
-              :pr-stars (get params :pr-stars)}]
-    (println params)
-    (api/send-message token channel (slack-message-test event))
-    (slack-message-test event)))
+        channel (get params :channel "#general")
+        args {:username (get-in params [:sender :login])
+              :pr-number (get-in params [:pull_request :number])
+              :pr-text (get-in params [:pull_request :title])
+              :pr-stars (get-in params [:pull_request :stars])
+              :pr-threshold (get-in params [:pull_request :threshold])}]
+    (api/send-message token channel (slack-message event args))
+    (slack-message event args)))
 
 (defroutes home-routes
   (GET "/" [] (home-page))
