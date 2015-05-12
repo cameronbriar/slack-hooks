@@ -1,4 +1,4 @@
-(ns reviewninja-slack.api
+(ns slack-hooks.api
   (:require [clj-http.client :as client]))
 
 (defn send-message [token channel text]

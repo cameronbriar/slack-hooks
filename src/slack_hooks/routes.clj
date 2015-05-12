@@ -1,5 +1,5 @@
-(ns reviewninja-slack.routes
-  (:require [reviewninja-slack.api :as api]
+(ns slack-hooks.routes
+  (:require [slack-hooks.api :as api]
             [compojure.core :refer [defroutes GET POST]]
             [clojure.java.io :as io]))
 

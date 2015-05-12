@@ -11,4 +11,4 @@ deploy:
   organization: GithubTeam
   space: applications
   on:
-    repo: reviewninja/reviewninja-slack
+    repo: reviewninja/slack-hooks

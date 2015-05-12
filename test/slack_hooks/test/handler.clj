@@ -1,7 +1,7 @@
-(ns reviewninja-slack.test.handler
+(ns slack-hooks.test.handler
   (:use clojure.test
         ring.mock.request
-        reviewninja-slack.handler))
+        slack-hooks.handler))
 
 (deftest test-app
   (testing "main route"

@@ -1,5 +1,5 @@
-(ns reviewninja-slack.core
-  (:require [reviewninja-slack.handler :refer [app]]
+(ns slack-hooks.core
+  (:require [slack-hooks.handler :refer [app]]
             [ring.adapter.jetty :refer [run-jetty]]
             [ring.middleware.reload :as reload]
             [environ.core :refer [env]])

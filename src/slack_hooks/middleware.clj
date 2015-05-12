@@ -1,4 +1,4 @@
-(ns reviewninja-slack.middleware
+(ns slack-hooks.middleware
   (:require [taoensso.timbre :as timbre]
             [selmer.middleware :refer [wrap-error-page]]
             [prone.middleware :refer [wrap-exceptions]]

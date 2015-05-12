@@ -1,7 +1,7 @@
-(defproject reviewninja-slack "0.1.0"
+(defproject slack-hooks "0.1.0"
 
-  :description "Slack bot for ReviewNinja"
-  :url "https://github.com/reviewninja/reviewninja-slack"
+  :description "Slack receivers for ReviewNinja"
+  :url "https://github.com/reviewninja/slack-hooks"
 
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [selmer "0.8.2"]
@@ -18,22 +18,22 @@
                  [ring-basic-authentication "1.0.5"]]
 
   :min-lein-version "2.0.0"
-  :uberjar-name "reviewninja-slack.jar"
+  :uberjar-name "slack-hooks.jar"
   :jvm-opts ["-server"]
 
 ;;enable to start the nREPL server when the application launches
 ; :env {:repl-port 7001}
 
-  :main reviewninja-slack.core
+  :main slack-hooks.core
 
   :plugins [[lein-ring "0.9.1"]
             [lein-environ "1.0.0"]
             [lein-ancient "0.6.5"]]
 
-  :ring {:handler reviewninja-slack.handler/app
-         :init    reviewninja-slack.handler/init
-         :destroy reviewninja-slack.handler/destroy
-         :uberwar-name "reviewninja-slack.war"}
+  :ring {:handler slack-hooks.handler/app
+         :init    slack-hooks.handler/init
+         :destroy slack-hooks.handler/destroy
+         :uberwar-name "slack-hooks.war"}
 
   :profiles
   {:uberjar {:omit-source true
@@ -46,7 +46,7 @@
                         ]
          :source-paths ["env/dev/clj"]
 
-         :repl-options {:init-ns reviewninja-slack.core}
+         :repl-options {:init-ns slack-hooks.core}
          :injections [(require 'pjstadig.humane-test-output)
                       (pjstadig.humane-test-output/activate!)]
          :env {:dev true}}})
