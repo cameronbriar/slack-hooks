@@ -3,30 +3,12 @@
             [compojure.core :refer [defroutes GET POST]]
             [clojure.java.io :as io]))
 
-;; message creating functions
-(defn- star [{:keys [username pr-number pr-text pr-stars pr-threshold]}]
-  (str username " has starred #" pr-number ": " pr-text "\n"
-       "#" pr-number " has " pr-stars " of " pr-threshold " needed stars."))
+(def EVENTS {})
 
-(defn- unstar [{:keys [username pr-number pr-text pr-stars pr-threshold]}]
-  (str username " has unstarred #" pr-number ": " pr-text "\n"
-       "#" pr-number " has " pr-stars " of " pr-threshold " needed stars."))
+(defn def-event [name fn]
+  (def EVENTS (conj EVENTS {name fn})))
 
-(defn- pr-create [{:keys [username pr-number pr-text pr-threshold]}]
-  (str username " has created pull request #" pr-number ": " pr-text "\n"
-       "#" pr-number " needs " pr-threshold " stars to merge."))
-
-(defn- pr-merge [{:keys [username pr-number pr-text]}]
-  (str username " has merged #" pr-number ": " pr-text "!"))
-
-;; function to determine what message to use
-(defn- slack-message [event args]
-  (case event
-    "star" (star args)
-    "unstar" (unstar args)
-    "pr-create" (pr-create args)
-    "pr-merge" (pr-merge args)
-    ""))
+(def-event "star" #(println %1))
 
 (defn home-page []
   "ReviewNinja + Slack = <3")
@@ -40,8 +22,10 @@
               :pr-text (get-in params [:pull_request :title])
               :pr-stars (get-in params [:pull_request :stars])
               :pr-threshold (get-in params [:pull_request :threshold])}]
-    (api/send-message token channel (slack-message event args))
-    (slack-message event args)))
+    (println params)
+    (println event token channel args)
+    (api/send-message token channel ((get EVENTS event) args))
+    ((get EVENTS event) 1 2)))
 
 (defroutes home-routes
   (GET "/" [] (home-page))
