@@ -32,7 +32,7 @@
                          (str "has unstarred _<" url "|#" number ": " text ">_" "\n"
                               "#" number " has " stars " of " threshold " Ninja stars needed to merge.")))
 
-(def-event "pr-create" [{:keys [username userlink number text threshold url]}]
+(def-event "pull_request" [{:keys [username userlink number text threshold url]}]
   (api/create-attachment username 
                          userlink
                          (str username "has created pull request #" number ": " text "\n"
@@ -40,7 +40,7 @@
                          (str "has created pull request _<" url "|#" number ": " text ">_" "\n"
                               "#" number " needs " threshold " Ninja stars to merge.")))
 
-(def-event "pr-merge" [{:keys [username userlink number text url]}]
+(def-event "merge" [{:keys [username userlink number text url]}]
   (api/create-attachment username 
                          userlink
                          (str username "has merged pull request #" number ": " text "!")
