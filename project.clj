@@ -4,6 +4,7 @@
   :url "https://github.com/reviewninja/slack-hooks"
 
   :dependencies [[org.clojure/clojure "1.6.0"]
+                 [org.clojure/data.json "0.2.6"]
                  [selmer "0.8.2"]
                  [com.taoensso/timbre "3.4.0"]
                  [clj-http "1.1.2"]
