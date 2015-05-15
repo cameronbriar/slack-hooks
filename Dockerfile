@@ -4,6 +4,9 @@ COPY . /app
 
 WORKDIR /app
 
-CMD ["lein", "run"]
+RUN lein deps
+RUN lein uberjar
+
+CMD ["java", "-jar", "target/slack-hooks.jar"]
 
 EXPOSE 80
