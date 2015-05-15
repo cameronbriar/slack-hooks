@@ -19,7 +19,7 @@
 (def-event "star" [{:keys [username userlink number text stars threshold url]}]
   (api/create-attachment username 
                          userlink
-                         (str username "has starred #" number ": " text "\n"
+                         (str username " has starred #" number ": " text "\n"
                               "#" number " has " stars " of " threshold " Ninja stars needed to merge.")
                          (str "has starred _<" url "|#" number ": " text ">_" "\n"
                               "#" number " has " stars " of " threshold " Ninja stars needed to merge.")))
@@ -27,7 +27,7 @@
 (def-event "unstar" [{:keys [username userlink number text stars threshold url]}]
   (api/create-attachment username 
                          userlink
-                         (str username "has unstarred #" number ": " text "\n"
+                         (str username " has unstarred #" number ": " text "\n"
                               "#" number " has " stars " of " threshold " Ninja stars needed to merge.")
                          (str "has unstarred _<" url "|#" number ": " text ">_" "\n"
                               "#" number " has " stars " of " threshold " Ninja stars needed to merge.")))
@@ -35,7 +35,7 @@
 (def-event "pull_request" [{:keys [username userlink number text threshold url]}]
   (api/create-attachment username 
                          userlink
-                         (str username "has created pull request #" number ": " text "\n"
+                         (str username " has created pull request #" number ": " text "\n"
                               "#" number " needs " threshold " Ninja stars to merge.")
                          (str "has created pull request _<" url "|#" number ": " text ">_" "\n"
                               "#" number " needs " threshold " Ninja stars to merge.")))
@@ -43,7 +43,7 @@
 (def-event "merge" [{:keys [username userlink number text url]}]
   (api/create-attachment username 
                          userlink
-                         (str username "has merged pull request #" number ": " text "!")
+                         (str username " has merged pull request #" number ": " text "!")
                          (str "has merged pull request _<" url "|#" number ": " text ">_" "!")))
 
 (defn home-page []
