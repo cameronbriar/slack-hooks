@@ -7,6 +7,6 @@ WORKDIR /app
 RUN lein deps
 RUN lein uberjar
 
-CMD "java -jar ${JAVA_OPTS} target/slack-hooks.jar"
+CMD "java -jar ${JAVA_OPTS} /app/target/slack-hooks.jar"
 
 EXPOSE 80
