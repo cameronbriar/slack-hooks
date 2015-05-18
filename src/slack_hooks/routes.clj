@@ -3,15 +3,15 @@
             [compojure.core :refer [defroutes GET POST]]
             [clojure.java.io :as io]))
 
-(def EVENTS {})
+(def EVENTS (atom {}))
 
 (defn fire [event args]
-  (if (contains? EVENTS event)
-    ((get EVENTS event) args)
+  (if (contains? @EVENTS event)
+    ((get @EVENTS event) args)
     (str "Unsupported event")))
 
 (defn def-event-fn [name fn]
-  (def EVENTS (conj EVENTS {name fn})))
+  (swap! EVENTS #(conj % {name fn})))
 
 (defmacro def-event [name args & fn]
   `(def-event-fn ~name (fn ~args ~@fn)))
