@@ -1,0 +1,19 @@
+{
+  "name": "ReviewNinja Slack Hooks",
+  "website": "http://review.ninja/",
+  "description": "ReviewNinja - merge with confidence. A code review tool that integrates into GitHub.",
+  "keywords": [
+    "code review",
+    "github",
+    "slack"
+  ],
+  "repository": "https://github.com/reviewninja/slack-hooks",
+  "logo": "https://raw.githubusercontent.com/reviewninja/review.ninja/master/src/client/assets/images/review-ninja-250.png",
+  "success_url": "/",
+  "env": {
+    "JVM_OPTS": {
+      "description": "Java Virtual Machine environment variables. Used for setting any necessary proxy.",
+      "required": false
+    }
+  }
+}
