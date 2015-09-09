@@ -1,9 +1,9 @@
-[![Build Status](https://travis-ci.org/reviewninja/slack-hooks.svg?branch=master)](https://travis-ci.org/reviewninja/slack-hooks)
+[![Build Status](https://travis-ci.org/reviewninja/slack-hooks.svg?branch=master)](https://travis-ci.org/reviewninja/slack-hooks) [![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
 
 ReviewNinja Slack Bot
 =======
 
-A simple Slack Bot for [ReviewNinja](http://www.review.ninja/).
+A simple Slack Bot for [ReviewNinja](http://www.review.ninja/). Intended to be deployed along side ReviewNinja to faciliate notification via [Slack](https://slack.com/).
 
 
 Credits
