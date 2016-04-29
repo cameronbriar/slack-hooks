@@ -8,7 +8,7 @@
 (defonce server (atom nil))
 
 (defn parse-port [port]
-  (Integer/parseInt (or port (env :port) "80")))
+  (Integer/parseInt (or port (env :port) "5001")))
 
 (defn start-server [port]
   (reset! server
